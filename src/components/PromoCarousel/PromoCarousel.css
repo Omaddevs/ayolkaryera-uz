@@ -1,0 +1,142 @@
+.promo-carousel-wrap {
+  padding-bottom: 48px;
+}
+
+.promo-carousel {
+  /* Rasmlar fonining rangi — slayd chetlari rasm bilan qo'shilib ketadi */
+  --promo-bg: #fb2f98;
+
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--radius-lg);
+  background: var(--promo-bg);
+}
+
+.promo-carousel__track {
+  display: flex;
+  transition: transform 0.8s cubic-bezier(0.65, 0, 0.35, 1);
+  will-change: transform;
+}
+
+.promo-carousel__slide {
+  flex: 0 0 100%;
+  display: flex;
+  justify-content: center;
+  height: 315px;
+  background: var(--promo-bg);
+}
+
+.promo-carousel__link {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+}
+
+.promo-carousel__slide img {
+  display: block;
+  height: 100%;
+  width: auto;
+  max-width: 100%;
+  object-fit: contain;
+  user-select: none;
+}
+
+/* Footerdagi kabi logo suv belgisi — faqat rasm yonidagi bo'sh pushti joyda */
+.promo-carousel__decor {
+  display: none;
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.promo-carousel__watermark {
+  /* (banner kengligi − rasm kengligi) / 2 = bir tomondagi bo'sh joy */
+  --side-gap: calc((100% - 851px) / 2);
+
+  position: absolute;
+  height: auto;
+  user-select: none;
+  opacity: 0.2;
+  filter: brightness(0) invert(1);
+}
+
+.promo-carousel__watermark--left {
+  left: -36px;
+  bottom: -48px;
+  width: min(300px, calc(var(--side-gap) + 4px));
+  transform: rotate(-8deg);
+}
+
+.promo-carousel__watermark--right {
+  right: -28px;
+  top: -36px;
+  width: min(250px, calc(var(--side-gap) - 16px));
+  opacity: 0.15;
+  transform: scaleX(-1) rotate(6deg);
+}
+
+@media (min-width: 1200px) {
+  .promo-carousel__decor {
+    display: block;
+  }
+}
+
+.promo-carousel__dots {
+  z-index: 2;
+  position: absolute;
+  left: 50%;
+  bottom: 14px;
+  display: flex;
+  gap: 8px;
+  transform: translateX(-50%);
+}
+
+.promo-carousel__dot {
+  width: 8px;
+  height: 8px;
+  padding: 0;
+  border: none;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.5);
+  cursor: pointer;
+  transition: width 0.3s ease, background-color 0.3s ease;
+}
+
+.promo-carousel__dot--active {
+  width: 22px;
+  background: #fff;
+}
+
+@media (max-width: 900px) {
+  .promo-carousel-wrap {
+    padding-bottom: 32px;
+  }
+
+  .promo-carousel__slide {
+    height: auto;
+  }
+
+  .promo-carousel__slide img {
+    width: 100%;
+    height: auto;
+  }
+}
+
+@media (max-width: 639px) {
+  .promo-carousel {
+    border-radius: 16px;
+  }
+
+  .promo-carousel__dots {
+    bottom: 8px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .promo-carousel__track,
+  .promo-carousel__dot {
+    transition: none;
+  }
+}

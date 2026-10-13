@@ -1,0 +1,501 @@
+/* Mobil vakansiya kartalari (bosh sahifa, ishlar ro'yxati, vakansiya sahifasi) */
+.mj-logo {
+  flex-shrink: 0;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  border-radius: 14px;
+  background: #fff;
+  border: 1px solid color-mix(in srgb, var(--color-border) 70%, transparent);
+  font-size: 17px;
+  font-weight: 800;
+}
+
+.mj-logo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.mj-verified {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  white-space: nowrap;
+}
+
+.mj-verified__icon {
+  display: inline-grid;
+  place-items: center;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--color-primary);
+  color: #fff;
+}
+
+.mj-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 16px;
+  border: 1px solid var(--color-border);
+  border-radius: 22px;
+  background: var(--color-card);
+  box-shadow: var(--shadow-soft);
+  color: var(--color-text);
+  transition: transform 0.15s ease, border-color 0.15s ease;
+}
+
+.mj-card:active {
+  transform: scale(0.985);
+}
+
+/* Butun karta bosiladigan havola; ichidagi tugmalar uning ustida turadi */
+.mj-card__link {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  border-radius: inherit;
+}
+
+.mj-card__link:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+.mj-head {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+
+.mj-head__text {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  flex: 1;
+  min-width: 0;
+}
+
+.mj-head__company {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  min-width: 0;
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 1.25;
+}
+
+.mj-head__name {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.mj-head__dot {
+  flex-shrink: 0;
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  background: currentColor;
+  opacity: 0.6;
+}
+
+.mj-head__meta {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  min-width: 0;
+  white-space: nowrap;
+  font-size: 12px;
+  color: var(--color-text-muted);
+}
+
+.mj-head__loc {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.mj-save {
+  position: relative;
+  z-index: 2;
+  flex-shrink: 0;
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  border: 1px solid var(--color-border);
+  border-radius: 14px;
+  background: var(--color-card);
+  color: var(--color-text-muted);
+  transition: color 0.15s ease, background 0.15s ease, border-color 0.15s ease, transform 0.15s ease;
+}
+
+.mj-save:active {
+  transform: scale(0.9);
+}
+
+.mj-save.is-active {
+  border-color: transparent;
+  background: var(--color-primary-soft);
+  color: var(--color-primary);
+}
+
+.mj-save:focus-visible,
+.mj-apply:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+.mj-card__title {
+  font-size: 17px;
+  font-weight: 800;
+  line-height: 1.3;
+  letter-spacing: -0.01em;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.mj-card__salary {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--color-text-muted);
+  font-variant-numeric: tabular-nums;
+}
+
+.mj-card__salary span {
+  font-weight: 500;
+  color: var(--color-text-subtle);
+}
+
+.mj-card__foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 14px;
+}
+
+.mj-applicants {
+  display: inline-flex;
+  align-items: center;
+}
+
+.mj-applicants img,
+.mj-applicants__more {
+  width: 30px;
+  height: 30px;
+  border: 2px solid var(--color-card);
+  border-radius: 50%;
+  object-fit: cover;
+  background: var(--color-tabs);
+}
+
+.mj-applicants > * + * {
+  margin-left: -9px;
+}
+
+.mj-applicants__more {
+  display: grid;
+  place-items: center;
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--color-text-muted);
+}
+
+.mj-apply {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  height: 40px;
+  padding: 0 16px;
+  border-radius: 999px;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--color-text-on-primary);
+  background: var(--color-primary);
+}
+
+.mj-apply--soft {
+  color: var(--color-primary);
+  background: var(--color-primary-soft);
+}
+
+/* ---------- Tavsiya etilgan (gorizontal) ---------- */
+.mj-feature {
+  width: 280px;
+  flex-shrink: 0;
+  scroll-snap-align: start;
+}
+
+.mj-feature--primary {
+  border-color: transparent;
+  background: var(--gradient-primary);
+  box-shadow: 0 10px 20px color-mix(in srgb, var(--color-primary) 24%, transparent);
+  color: #fff;
+}
+
+.mj-feature--primary .mj-head__meta,
+.mj-feature--primary .mj-card__salary,
+.mj-feature--primary .mj-card__salary span {
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.mj-feature--primary .mj-verified__icon {
+  background: #fff;
+  color: var(--color-primary);
+}
+
+.mj-feature--primary .mj-logo {
+  border-color: transparent;
+}
+
+.mj-feature--primary .mj-save {
+  border-color: rgba(255, 255, 255, 0.3);
+  background: rgba(255, 255, 255, 0.18);
+  color: #fff;
+}
+
+.mj-feature--primary .mj-save.is-active {
+  background: #fff;
+  color: var(--color-primary);
+}
+
+.mj-feature--primary .mj-applicants img,
+.mj-feature--primary .mj-applicants__more {
+  border-color: color-mix(in srgb, #fff 70%, var(--color-primary));
+}
+
+.mj-feature--primary .mj-applicants__more {
+  background: rgba(255, 255, 255, 0.9);
+  color: var(--color-primary);
+}
+
+.mj-feature--primary .mj-apply {
+  background: rgba(255, 255, 255, 0.22);
+  backdrop-filter: blur(6px);
+}
+
+/* ---------- Ro'yxat kartasi ---------- */
+.mj-job__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 10px;
+}
+
+.mj-tag {
+  display: inline-flex;
+  align-items: center;
+  height: 30px;
+  padding: 0 12px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 600;
+  white-space: nowrap;
+  color: var(--color-primary);
+  background: var(--color-primary-soft);
+}
+
+.mj-tag--muted {
+  padding: 0 10px;
+  color: var(--color-text-muted);
+  background: var(--color-tabs);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mj-card,
+  .mj-save {
+    transition: none;
+  }
+}
+
+/* ---------- Ishlar lentasi kartasi ---------- */
+.mf-card {
+  gap: 0;
+  padding: 16px;
+}
+
+/* Top vakansiya — yuqorida ingichka brend chizig'i */
+.mf-card--top {
+  border-color: color-mix(in srgb, var(--color-primary) 35%, var(--color-border));
+  background: linear-gradient(180deg, var(--color-primary-soft) 0%, var(--color-card) 90px);
+}
+
+.mf-flags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 12px;
+}
+
+.mf-flag {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  height: 26px;
+  padding: 0 10px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.mf-flag--top {
+  color: #fff;
+  background: var(--gradient-primary);
+}
+
+.mf-flag--live {
+  color: #15803d;
+  background: color-mix(in srgb, #22c55e 13%, var(--color-card));
+}
+
+[data-theme='dark'] .mf-flag--live {
+  color: #4ade80;
+}
+
+.mf-flag__pulse {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #22c55e;
+  animation: mf-pulse 1.8s ease-out infinite;
+}
+
+@keyframes mf-pulse {
+  0% {
+    box-shadow: 0 0 0 0 color-mix(in srgb, #22c55e 60%, transparent);
+  }
+  100% {
+    box-shadow: 0 0 0 7px transparent;
+  }
+}
+
+.mf-title {
+  margin-top: 2px;
+  font-size: 19px;
+  font-weight: 800;
+  line-height: 1.25;
+  letter-spacing: -0.015em;
+  text-wrap: balance;
+}
+
+.mf-salary {
+  margin-top: 4px;
+  font-size: 16px;
+  font-weight: 800;
+  color: var(--color-primary);
+  font-variant-numeric: tabular-nums;
+}
+
+.mf-salary span {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--color-text-subtle);
+}
+
+.mf-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 12px;
+}
+
+.mf-tags .mj-tag {
+  gap: 5px;
+}
+
+.mf-tag--quick {
+  color: #15803d;
+  background: color-mix(in srgb, #22c55e 13%, var(--color-card));
+}
+
+[data-theme='dark'] .mf-tag--quick {
+  color: #4ade80;
+}
+
+.mf-foot {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 14px;
+  padding-top: 12px;
+  border-top: 1px dashed var(--color-border);
+}
+
+.mf-date {
+  font-size: 12px;
+  color: var(--color-text-subtle);
+}
+
+.mf-actions {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 8px;
+}
+
+.mf-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  height: 48px;
+  padding: 0 18px;
+  border-radius: 16px;
+  font-size: 15px;
+  font-weight: 700;
+  white-space: nowrap;
+  transition: transform 0.15s ease;
+}
+
+.mf-btn:active {
+  transform: scale(0.97);
+}
+
+.mf-btn:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+.mf-btn--primary {
+  color: var(--color-text-on-primary);
+  background: var(--color-primary);
+  box-shadow: 0 8px 18px color-mix(in srgb, var(--color-primary) 26%, transparent);
+}
+
+.mf-btn--primary.is-done {
+  color: #15803d;
+  background: color-mix(in srgb, #22c55e 14%, var(--color-card));
+  box-shadow: none;
+}
+
+[data-theme='dark'] .mf-btn--primary.is-done {
+  color: #4ade80;
+}
+
+.mf-btn--soft {
+  color: var(--color-primary);
+  background: var(--color-primary-soft);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mf-flag__pulse {
+    animation: none;
+  }
+}

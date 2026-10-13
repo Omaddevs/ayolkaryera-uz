@@ -1,0 +1,674 @@
+.jdm {
+  min-height: 100dvh;
+  padding-bottom: calc(96px + env(safe-area-inset-bottom, 0px));
+  background:
+    radial-gradient(360px 260px at 50% 0%, color-mix(in srgb, var(--color-primary) 22%, transparent) 0%, transparent 75%),
+    var(--color-bg);
+  color: var(--color-text);
+}
+
+/* ---------- Yuqori panel ---------- */
+.jdm-bar {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  display: grid;
+  grid-template-columns: 44px minmax(0, 1fr) 44px;
+  align-items: center;
+  gap: 8px;
+  padding: calc(10px + env(safe-area-inset-top, 0px)) 16px 10px;
+  transition: background 0.2s ease, box-shadow 0.2s ease;
+}
+
+.jdm-bar.is-scrolled {
+  background: color-mix(in srgb, var(--color-bg-elevated) 88%, transparent);
+  box-shadow: 0 1px 0 var(--color-border);
+  backdrop-filter: saturate(1.4) blur(14px);
+  -webkit-backdrop-filter: saturate(1.4) blur(14px);
+}
+
+.jdm-bar__btn,
+.jdm-bar__save.mj-save {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border: 1px solid var(--color-border);
+  border-radius: 50%;
+  background: var(--color-card);
+  color: var(--color-text);
+  box-shadow: var(--shadow-soft);
+}
+
+.jdm-bar__save.mj-save.is-active {
+  color: #fff;
+  background: var(--color-primary);
+}
+
+.jdm-bar__title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  min-width: 0;
+  font-size: 17px;
+  font-weight: 800;
+}
+
+.jdm-bar__title > span:first-child {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.jdm-bar__btn:focus-visible,
+.jdm-bar__title:focus-visible,
+.jdm-tabs__item:focus-visible,
+.jdm-more:focus-visible,
+.jdm-apply:focus-visible,
+.jdm-btn:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+/* ---------- Asosiy karta ---------- */
+.jdm-hero {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 46px;
+  padding: 0 16px 16px;
+  border-radius: 32px 32px 0 0;
+  background: var(--color-bg-elevated);
+  text-align: center;
+}
+
+.jdm-hero__logo.mj-logo {
+  margin-top: -38px;
+  border: 4px solid var(--color-bg-elevated);
+  border-radius: 50%;
+  box-shadow: 0 10px 24px rgba(18, 20, 28, 0.12);
+}
+
+.jdm-hero__title {
+  margin-top: 14px;
+  font-size: 23px;
+  font-weight: 800;
+  line-height: 1.25;
+  letter-spacing: -0.02em;
+  text-wrap: balance;
+}
+
+.jdm-hero__salary {
+  margin-top: 6px;
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--color-primary);
+  font-variant-numeric: tabular-nums;
+}
+
+.jdm-hero__meta {
+  display: flex;
+  gap: 14px;
+  margin-top: 8px;
+  font-size: 13px;
+  color: var(--color-text-muted);
+}
+
+.jdm-hero__meta span {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.jdm-hero__tags {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 14px;
+}
+
+.jdm-pill {
+  display: inline-flex;
+  align-items: center;
+  height: 32px;
+  padding: 0 14px;
+  border: 1px solid var(--color-border);
+  border-radius: 999px;
+  background: var(--color-card);
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+.jdm-tabs {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4px;
+  width: 100%;
+  margin-top: 20px;
+  padding: 4px;
+  border-radius: 999px;
+  background: var(--color-tabs);
+}
+
+.jdm-tabs__item {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  height: 44px;
+  border: none;
+  border-radius: 999px;
+  background: transparent;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--color-text-muted);
+  transition: background 0.2s ease, color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.jdm-tabs__item.is-active {
+  color: var(--color-primary);
+  background: var(--color-card);
+  box-shadow: 0 2px 8px rgba(18, 20, 28, 0.08);
+}
+
+/* ---------- Kontent ---------- */
+.jdm-body {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 4px 16px 0;
+  background: var(--color-bg-elevated);
+}
+
+.jdm-strip {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  padding: 14px 6px;
+  border: 1px solid var(--color-border);
+  border-radius: 22px;
+  background: var(--color-card);
+}
+
+.jdm-strip > div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  padding: 0 6px;
+  text-align: center;
+}
+
+.jdm-strip > div + div {
+  border-left: 1px solid var(--color-border);
+}
+
+.jdm-strip svg {
+  color: var(--color-primary);
+}
+
+.jdm-strip strong {
+  font-size: 13px;
+  font-weight: 800;
+  line-height: 1.25;
+}
+
+.jdm-strip span {
+  font-size: 11px;
+  color: var(--color-text-muted);
+}
+
+.jdm-block {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.jdm-block h2,
+.jdm-similar h2 {
+  font-size: 18px;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+}
+
+.jdm-text {
+  display: -webkit-box;
+  overflow: hidden;
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--color-text-muted);
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+}
+
+.jdm-text.is-expanded {
+  display: block;
+}
+
+.jdm-more {
+  align-self: flex-start;
+  padding: 0;
+  border: none;
+  background: none;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--color-primary);
+}
+
+.jdm-facts {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.jdm-fact {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 16px;
+  border: 1px solid var(--color-border);
+  border-radius: 20px;
+  background: var(--color-card);
+}
+
+.jdm-fact__icon {
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  margin-bottom: 8px;
+  border-radius: 12px;
+  color: var(--color-primary);
+  background: var(--color-primary-soft);
+}
+
+.jdm-fact__label {
+  font-size: 12px;
+  color: var(--color-text-muted);
+}
+
+.jdm-fact strong {
+  font-size: 15px;
+  font-weight: 800;
+}
+
+.jdm-checklist {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.jdm-checklist li {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--color-text);
+}
+
+.jdm-checklist__icon {
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
+  margin-top: 1px;
+  border-radius: 50%;
+  color: var(--color-primary);
+  background: var(--color-primary-soft);
+}
+
+.jdm-block--offer {
+  padding: 18px;
+  border-radius: 22px;
+  background: var(--color-primary-tint);
+  border: 1px solid color-mix(in srgb, var(--color-primary) 18%, transparent);
+}
+
+.jdm-similar {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin: 8px -16px 0;
+}
+
+.jdm-similar__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 16px;
+}
+
+.jdm-similar__head a {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--color-primary);
+}
+
+.jdm-similar__rail {
+  display: flex;
+  gap: 12px;
+  padding: 4px 16px 16px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-padding: 0 16px;
+  scrollbar-width: none;
+}
+
+.jdm-similar__rail::-webkit-scrollbar {
+  display: none;
+}
+
+/* ---------- Kompaniya ---------- */
+.jdm-company {
+  padding: 18px;
+  border: 1px solid var(--color-border);
+  border-radius: 22px;
+  background: var(--color-card);
+}
+
+.jdm-company__head {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.jdm-company__head p {
+  font-size: 13px;
+  color: var(--color-text-muted);
+}
+
+.jdm-company__about {
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--color-text-muted);
+}
+
+.jdm-company__stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+}
+
+.jdm-company__stats div {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 12px 8px;
+  border-radius: 14px;
+  background: var(--color-primary-tint);
+  text-align: center;
+}
+
+.jdm-company__stats strong {
+  font-size: 16px;
+  font-weight: 800;
+  color: var(--color-primary);
+}
+
+.jdm-company__stats span {
+  font-size: 12px;
+  color: var(--color-text-muted);
+}
+
+.jdm-gallery {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+}
+
+.jdm-gallery img {
+  width: 100%;
+  aspect-ratio: 1;
+  border-radius: 16px;
+  object-fit: cover;
+}
+
+.jdm-quote {
+  margin: 0;
+  padding: 16px 18px;
+  border-left: 3px solid var(--color-primary);
+  border-radius: 0 16px 16px 0;
+  background: var(--color-card);
+  font-size: 15px;
+  font-style: italic;
+  line-height: 1.5;
+}
+
+.jdm-company__actions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.jdm-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  height: 50px;
+  border-radius: 16px;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.jdm-btn--outline {
+  border: 1px solid var(--color-border);
+  background: var(--color-card);
+  color: var(--color-text);
+}
+
+.jdm-btn--soft {
+  color: var(--color-primary);
+  background: var(--color-primary-soft);
+}
+
+/* ---------- Pastki "Ariza topshirish" ---------- */
+.jdm-cta {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 30;
+  padding: 12px 16px calc(12px + env(safe-area-inset-bottom, 0px));
+  background: linear-gradient(180deg, transparent 0%, var(--color-bg-elevated) 35%);
+}
+
+.jdm-apply {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  height: 62px;
+  padding: 6px 22px 6px 6px;
+  border: none;
+  border-radius: 999px;
+  background: var(--gradient-primary);
+  box-shadow: 0 14px 30px color-mix(in srgb, var(--color-primary) 38%, transparent);
+  color: #fff;
+}
+
+.jdm-apply__knob {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  height: 100%;
+  padding: 0 24px;
+  border-radius: 999px;
+  background: #fff;
+  font-size: 15px;
+  font-weight: 800;
+  color: var(--color-primary);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+}
+
+.jdm-apply--done {
+  background: var(--color-text);
+  box-shadow: 0 12px 26px rgba(18, 20, 28, 0.22);
+}
+
+.jdm-apply--done .jdm-apply__knob {
+  color: #16a34a;
+}
+
+.jdm-apply__hint {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--color-bg);
+}
+
+/* ---------- Surib ariza topshirish ---------- */
+.swipe-apply {
+  --swipe-pad: 6px;
+  position: relative;
+  height: 62px;
+  overflow: hidden;
+  border-radius: 999px;
+  background: var(--gradient-primary);
+  box-shadow: 0 14px 30px color-mix(in srgb, var(--color-primary) 38%, transparent);
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+/* Surilgan yo'l — tugma orqasida yorishib boradi */
+.swipe-apply__fill {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: calc(var(--swipe-x) + 50%);
+  border-radius: inherit;
+  background: rgba(255, 255, 255, 0.16);
+  opacity: var(--swipe-progress);
+}
+
+.swipe-apply__hint {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 6px;
+  padding-right: 20px;
+  font-size: 13px;
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.92);
+  opacity: calc(1 - var(--swipe-progress) * 1.4);
+  pointer-events: none;
+}
+
+.swipe-apply__chevrons {
+  display: inline-flex;
+}
+
+.swipe-apply__chevrons svg {
+  margin-left: -7px;
+  animation: swipe-chevron 1.4s ease-in-out infinite;
+}
+
+.swipe-apply__chevrons svg:nth-child(1) {
+  opacity: 0.45;
+}
+
+.swipe-apply__chevrons svg:nth-child(2) {
+  opacity: 0.7;
+  animation-delay: 0.15s;
+}
+
+.swipe-apply__chevrons svg:nth-child(3) {
+  animation-delay: 0.3s;
+}
+
+@keyframes swipe-chevron {
+  50% {
+    transform: translateX(4px);
+  }
+}
+
+.swipe-apply__knob {
+  position: absolute;
+  top: var(--swipe-pad);
+  bottom: var(--swipe-pad);
+  left: var(--swipe-pad);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 46%;
+  min-width: 150px;
+  padding: 0 18px;
+  border: none;
+  border-radius: 999px;
+  background: #fff;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.16);
+  font-size: 15px;
+  font-weight: 800;
+  white-space: nowrap;
+  color: var(--color-primary);
+  cursor: grab;
+  touch-action: pan-y;
+  transform: translateX(var(--swipe-x));
+  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), left 0.3s ease, width 0.3s ease, min-width 0.3s ease;
+}
+
+/* Barmoq bilan surilayotganda kechikishsiz ergashadi */
+.swipe-apply.is-dragging .swipe-apply__knob {
+  cursor: grabbing;
+  transition: none;
+}
+
+.swipe-apply__knob:focus-visible {
+  outline: 3px solid #fff;
+  outline-offset: 2px;
+}
+
+/* Shunchaki bosilganda — "suring" ishorasi */
+.swipe-apply__knob.is-nudging {
+  animation: swipe-nudge 0.6s ease;
+}
+
+@keyframes swipe-nudge {
+  30% {
+    transform: translateX(28px);
+  }
+  55% {
+    transform: translateX(-4px);
+  }
+  75% {
+    transform: translateX(10px);
+  }
+}
+
+/* Yakunlandi: tugma o'ng chetga yetib, ✓ ga aylanadi */
+.swipe-apply.is-done .swipe-apply__knob {
+  left: calc(100% - 50px - var(--swipe-pad));
+  width: 50px;
+  min-width: 50px;
+  padding: 0;
+  transform: none;
+  color: #16a34a;
+  cursor: default;
+}
+
+.swipe-apply.is-done .swipe-apply__hint {
+  justify-content: flex-start;
+  padding: 0 0 0 26px;
+  font-size: 15px;
+  opacity: 1;
+}
+
+.swipe-apply.is-done .swipe-apply__chevrons {
+  display: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .swipe-apply__chevrons svg,
+  .swipe-apply__knob.is-nudging {
+    animation: none;
+  }
+}
